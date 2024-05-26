@@ -1,0 +1,28 @@
+{
+  "name": "lib-potion-puzzle-classes",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "lib/potion-puzzle/classes/src",
+  "projectType": "library",
+  "tags": [],
+  "targets": {
+    "build": {
+      "executor": "@nx/esbuild:esbuild",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/lib/potion-puzzle/classes",
+        "main": "lib/potion-puzzle/classes/src/index.ts",
+        "tsConfig": "lib/potion-puzzle/classes/tsconfig.lib.json",
+        "assets": ["lib/potion-puzzle/classes/*.md"],
+        "generatePackageJson": true,
+        "format": ["cjs"]
+      }
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "options": {
+        "jestConfig": "lib/potion-puzzle/classes/jest.config.ts"
+      }
+    }
+  }
+}

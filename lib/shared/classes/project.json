@@ -1,0 +1,28 @@
+{
+  "name": "lib-shared-classes",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "lib/shared/classes/src",
+  "projectType": "library",
+  "tags": [],
+  "targets": {
+    "build": {
+      "executor": "@nx/esbuild:esbuild",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/lib/shared/classes",
+        "main": "lib/shared/classes/src/index.ts",
+        "tsConfig": "lib/shared/classes/tsconfig.lib.json",
+        "assets": ["lib/shared/classes/*.md"],
+        "generatePackageJson": true,
+        "format": ["cjs"]
+      }
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "options": {
+        "jestConfig": "lib/shared/classes/jest.config.ts"
+      }
+    }
+  }
+}

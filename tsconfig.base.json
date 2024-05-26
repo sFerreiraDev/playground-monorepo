@@ -14,7 +14,15 @@
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
-    "paths": {}
+    "paths": {
+      "@playground-monorepo/lib/potion-puzzle/classes": [
+        "lib/potion-puzzle/classes/src/index.ts"
+      ],
+      "@playground-monorepo/lib/shared/classes": [
+        "lib/shared/classes/src/index.ts"
+      ],
+      "@playground-monorepo/lib/shared/utils": ["lib/shared/utils/src/index.ts"]
+    }
   },
   "exclude": ["node_modules", "tmp"]
 }

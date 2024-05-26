@@ -1,1 +1,14 @@
-<app-nx-welcome></app-nx-welcome> <router-outlet></router-outlet>
+<!-- <app-nx-welcome></app-nx-welcome> <router-outlet></router-outlet> -->
+<div style="display: flex;">
+    @for (cup of cups; let idCup = $index; track idCup) {
+        <div style="display: flex; flex-direction: column; border: 1px solid black;" (click)="clickHandler(idCup)" [style.border-color]="idCup === selected ? 'blue' : 'black'">
+            @for (color of cup; let idColor = $index; track idColor) {
+                <div style="display: flex; height: 20px; width: 20px; justify-content: center; align-items: center;" class="color-{{color}}"></div>
+            }
+        </div>
+    }
+</div>
+<div style="display: inline-flex; flex-direction: column;">
+    <textarea name="state" id="state" [(ngModel)]="state" style="margin-top: 20px; width: 150px; height: 120px;"></textarea>
+    <button (click)="startGame(state)">Start</button>
+</div>
