@@ -1,54 +1,70 @@
 import { Component } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { NxWelcomeComponent } from './nx-welcome.component';
-import { Game } from '@playground-monorepo/lib/potion-puzzle/classes';
+import { Facade, MOCK_GAME_STATE } from '@playground-monorepo/lib/potion-puzzle/classes';
+import { CupComponent } from '@playground-monorepo/lib/shared/cup';
 import { FormsModule } from '@angular/forms';
 
 @Component({
   standalone: true,
-  imports: [NxWelcomeComponent, RouterModule, FormsModule],
+  imports: [NxWelcomeComponent, RouterModule, FormsModule, CupComponent],
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrl: './app.component.less',
 })
 export class AppComponent {
   title = 'playground-monorepo';
-  cups?: Array<string[]>;
-  game?: Game;
 
-  state = `|1|2|3]
-|3|2|3]
-|1|2|1]
-| | | ]`;
+  gameFacade: Facade = new Facade();
+  cups: Array<string[]> = [];
+  gameId = -1;
+  selected?: number;
+
+  state = MOCK_GAME_STATE;
 
   constructor() {
     this.startGame(this.state);
   }
 
-  selected?: number;
   clickHandler(cupIndex: number) {
-    if (!this.game) return;
-    if (this.selected == null) {
-      this.selected = cupIndex;
+    if (!this.isAnyCupSelected()) {
+      this.selectCup(cupIndex);
       return;
     }
-    if (this.selected === cupIndex) {
-      delete this.selected;
+    if (this.isSameCupSelected(cupIndex)) {
+      this.deselectCup();
       return;
     }
+    // should never happen but typescript :/
+    if (this.selected == null) return;
     try {
-      this.game.pour(this.selected, cupIndex);
-      delete this.selected;
-      this.cups = this.game.getGameData();
+      this.cups = this.gameFacade.pour(this.selected, cupIndex, this.gameId);
+      this.deselectCup();
     } catch (error) {
-      this.selected = cupIndex;
+      this.selectCup(cupIndex);
       console.error(error)
     }
   }
 
+  isAnyCupSelected() {
+    return this.selected != null;
+  }
+
+  isSameCupSelected(cupIndex: number) {
+    return this.selected === cupIndex;
+  }
+
+  selectCup(cupIndex: number) {
+    this.selected = cupIndex;
+  }
+
+  deselectCup() {
+    delete this.selected;
+  }
+
   startGame(state: string) {
     this.state = state;
-    this.game = new Game(this.state);
-    this.cups = this.game.getGameData();
+    this.gameId = this.gameFacade.start(this.state);
+    this.cups = this.gameFacade.getGameData(this.gameId);
   }
 }
