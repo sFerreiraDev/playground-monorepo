@@ -4,10 +4,13 @@ import { NxWelcomeComponent } from './nx-welcome.component';
 import { Facade, MOCK_GAME_STATE } from '@playground-monorepo/lib/potion-puzzle/classes';
 import { CupComponent } from '@playground-monorepo/lib/shared/cup';
 import { FormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
+import { Observable } from 'rxjs';
+import { GameStatus } from '@playground-monorepo/lib/shared/types';
 
 @Component({
   standalone: true,
-  imports: [NxWelcomeComponent, RouterModule, FormsModule, CupComponent],
+  imports: [CommonModule, NxWelcomeComponent, RouterModule, FormsModule, CupComponent],
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrl: './app.component.less',
@@ -15,11 +18,12 @@ import { FormsModule } from '@angular/forms';
 export class AppComponent {
   title = 'playground-monorepo';
 
-  gameFacade: Facade = new Facade();
+  public gameFacade: Facade = new Facade();
   cups: Array<string[]> = [];
   gameId = -1;
   selected?: number;
 
+  gameStatus$?: Observable<GameStatus>;
   state = MOCK_GAME_STATE;
 
   constructor() {
@@ -63,8 +67,10 @@ export class AppComponent {
   }
 
   startGame(state: string) {
+    if (this.gameId >= 0) this.gameFacade.end(this.gameId);
     this.state = state;
     this.gameId = this.gameFacade.start(this.state);
     this.cups = this.gameFacade.getGameData(this.gameId);
+    this.gameStatus$ = this.gameFacade.getGameState$(this.gameId);
   }
 }

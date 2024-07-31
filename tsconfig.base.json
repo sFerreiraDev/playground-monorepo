@@ -25,6 +25,9 @@
         "lib/shared/classes/src/index.ts"
       ],
       "@playground-monorepo/lib/shared/cup": ["lib/shared/cup/src/index.ts"],
+      "@playground-monorepo/lib/shared/types": [
+        "lib/shared/types/src/index.ts"
+      ],
       "@playground-monorepo/lib/shared/utils": ["lib/shared/utils/src/index.ts"]
     }
   },

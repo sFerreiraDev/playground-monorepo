@@ -1,15 +1,19 @@
+import { GameStatus } from '@playground-monorepo/lib/shared/types';
 import { NumberUtils } from '@playground-monorepo/lib/shared/utils';
 import { Game } from './game';
+import { BehaviorSubject } from 'rxjs';
 
 export class Facade {
   public static readonly ERROR_INVALID_GAME_ID = `Invalid game ID`;
 
   public readonly games = new Map<number, Game>();
+  private readonly gamesStatus = new Map<number, BehaviorSubject<GameStatus>>;
 
   start(state: string) {
     const id = NumberUtils.firstFreeIndex([...this.games.keys()]);
     const game = new Game(state);
     this.games.set(id, game);
+    this.gamesStatus.set(id, new BehaviorSubject<GameStatus>('on_progress'));
     return id;
   }
 
@@ -21,7 +25,21 @@ export class Facade {
   pour(fromCup: number, toCup: number, gameOrId: number | Game) {
     const game = this._getGame(gameOrId);
     game.pour(fromCup, toCup);
+    if (this.isWin(game)) {
+      const id = this._getGameId(gameOrId);
+      this.gamesStatus.get(id)?.next('won');
+    }
     return game.getGameData();
+  }
+
+  isWin(gameOrId: number | Game) {
+    const game = this._getGame(gameOrId);
+    return game.isWin();
+  }
+
+  getGameState$(gameOrId: number | Game) {
+    const id = this._getGameId(gameOrId);
+    return this.gamesStatus.get(id)?.asObservable();
   }
 
   getGameData(gameOrId: number | Game) {
@@ -40,7 +58,7 @@ export class Facade {
 
   private _getGameId(gameOrId: number | Game) {
     const gameId = typeof gameOrId === 'number' ? gameOrId : this._getGameIdFromGameInstance(gameOrId);
-    if (!gameId || !this.games.get(gameId)) throw Facade.ERROR_INVALID_GAME_ID;
+    if (gameId == null || !this.games.get(gameId)) throw Facade.ERROR_INVALID_GAME_ID;
     return gameId;
   }
 

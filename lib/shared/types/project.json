@@ -1,0 +1,19 @@
+{
+  "name": "lib-shared-types",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "lib/shared/types/src",
+  "projectType": "library",
+  "tags": [],
+  "targets": {
+    "build": {
+      "executor": "@nx/js:tsc",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/lib/shared/types",
+        "main": "lib/shared/types/src/index.ts",
+        "tsConfig": "lib/shared/types/tsconfig.lib.json",
+        "assets": ["lib/shared/types/*.md"]
+      }
+    }
+  }
+}

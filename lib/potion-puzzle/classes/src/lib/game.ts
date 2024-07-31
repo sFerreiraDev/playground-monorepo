@@ -44,7 +44,9 @@ export class Game {
     return this.cups.map(cup => cup.toString()).join(Game.CUP_SPLITTER);
   }
   
-  // TODO: WINING CONDITION LOGIC
+  isWin() {
+    return this.cups.every(cup => cup.isClosed() || cup.isEmpty());
+  }
 
   private _checkCupIndex(index: number) {
     if (!(index >= 0) || !this.cups[index]) throw Game.ERROR_INVALID_CUP;
