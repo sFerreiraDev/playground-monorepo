@@ -1,9 +1,0 @@
-{
-  "name": "playground-monorepo-e2e",
-  "$schema": "../../node_modules/nx/schemas/project-schema.json",
-  "projectType": "application",
-  "sourceRoot": "apps/playground-monorepo-e2e/src",
-  "implicitDependencies": ["playground-monorepo"],
-  "// targets": "to see all targets run: nx show project playground-monorepo-e2e --web",
-  "targets": {}
-}
