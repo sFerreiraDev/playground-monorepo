@@ -60,3 +60,18 @@ It will show tasks that you can run with Nx.
 - [Join the community](https://nx.dev/community)
 - [Subscribe to the Nx Youtube Channel](https://www.youtube.com/@nxdevtools)
 - [Follow us on Twitter](https://twitter.com/nxdevtools)
+
+## TODO's:
+
+[x] Winning Condition for Cup Game
+[X] Add level mechanic
+[ ] Add level generator
+[ ] Add Animations when playing the game
+[ ] Create Game Component
+[ ] PotionPuzzle test units
+[ ] Add PotionPuzzle Facade
+[ ] Start Thinking on the Initial Menu
+[ ] Fix issue with component selectors and change defaut of 'lib-'
+[ ] Create an Plays history so it's possible to roleback
+[ ] Add possibility to add more cups
+[ ] Add restart level button

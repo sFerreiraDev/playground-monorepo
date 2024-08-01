@@ -1,13 +1,2 @@
 <!-- <app-nx-welcome></app-nx-welcome> <router-outlet></router-outlet> -->
-@if ((gameStatus$ | async) === 'won') {
-    <div>Congratz! You WON!!!</div>
-}
-<div style="display: flex;">
-    @for (cup of cups; let idCup = $index; track idCup) {
-        <lib-cup [cupContents]="cup" [selected]="idCup === selected" [closed]="false" (click)="clickHandler(idCup)"></lib-cup>
-    }
-</div>
-<div style="display: inline-flex; flex-direction: column;">
-    <textarea name="state" id="state" [(ngModel)]="state" style="margin-top: 20px; width: 150px; height: 120px;"></textarea>
-    <button (click)="startGame(state)">Start</button>
-</div>
+HEY!

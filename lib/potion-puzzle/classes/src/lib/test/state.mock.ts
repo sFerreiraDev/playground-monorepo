@@ -1,4 +1,18 @@
-export const MOCK_GAME_STATE = `|1|2|3]
+export const MOCK_LEVELS_GAME_STATE = {
+  level1: `|1|2|1]
+|2|1|2]
+| | | ]
+| | | ]`,
+  level2: `|1|2|1]
+|2|1|2]
+| | | ]`,
+  level3: `|1|2|3]
 |3|2|3]
 |1|2|1]
-| | | ]`;
+| | | ]
+| | | ]`,
+  level4: `|1|2|3]
+|3|2|3]
+|1|2|1]
+| | | ]`,
+};

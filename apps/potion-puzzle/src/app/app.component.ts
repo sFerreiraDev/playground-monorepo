@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { NxWelcomeComponent } from './nx-welcome.component';
+
+import { LibPotionPuzzleComponentsComponent } from '@playground-monorepo/lib/potion-puzzle/components';
 
 @Component({
   standalone: true,
-  imports: [NxWelcomeComponent, RouterModule],
+  imports: [RouterModule, LibPotionPuzzleComponentsComponent],
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrl: './app.component.less',

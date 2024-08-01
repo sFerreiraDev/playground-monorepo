@@ -5,9 +5,14 @@ import { BehaviorSubject } from 'rxjs';
 
 export class Facade {
   public static readonly ERROR_INVALID_GAME_ID = `Invalid game ID`;
+  private static readonly FACADE = new Facade();
 
   public readonly games = new Map<number, Game>();
   private readonly gamesStatus = new Map<number, BehaviorSubject<GameStatus>>;
+
+  static get() {
+    return Facade.FACADE;
+  }
 
   start(state: string) {
     const id = NumberUtils.firstFreeIndex([...this.games.keys()]);
