@@ -74,6 +74,10 @@ export class LibPotionPuzzleComponentsComponent {
     delete this.selected;
   }
 
+  restartLevel() {
+    this.cups = this.game.restart();
+  }
+
   startGame() {
     this.cups = this.game.startNewGame();
     this.level = this.game.getLevel();

@@ -1,11 +1,11 @@
 import { Cup } from '@playground-monorepo/lib/shared/classes';
 import { Game } from './game';
-import { MOCK_GAME_STATE } from './test';
+import { MOCK_LEVELS_GAME_STATE } from './test';
 
 describe('Game', () => {
   let game: Game;
   beforeEach(() => {
-    game = new Game(MOCK_GAME_STATE)
+    game = new Game(MOCK_LEVELS_GAME_STATE.level4)
   })
   it('should create', () => {
     expect(game).toBeDefined();

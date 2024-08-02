@@ -63,8 +63,6 @@ It will show tasks that you can run with Nx.
 
 ## TODO's:
 
-[x] Winning Condition for Cup Game
-[X] Add level mechanic
 [ ] Add level generator
 [ ] Add Animations when playing the game
 [ ] Create Game Component
@@ -74,4 +72,9 @@ It will show tasks that you can run with Nx.
 [ ] Fix issue with component selectors and change defaut of 'lib-'
 [ ] Create an Plays history so it's possible to roleback
 [ ] Add possibility to add more cups
-[ ] Add restart level button
+[ ] Add Sonar
+[ ] Create Rep
+[ ] Add CICD Pipelines
+[X] Add restart level button
+[x] Winning Condition for Cup Game
+[X] Add level mechanic

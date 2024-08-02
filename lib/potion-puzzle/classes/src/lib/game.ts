@@ -11,10 +11,10 @@ export class Game {
   public static readonly ERROR_ILEGAL_MOVE = `Ilegal Move`;
   public static readonly ERROR_INVALID_CUP = `Invalid Cup`;
 
-  public readonly cups: Cup[];
+  private cups: Cup[];
 
-  constructor(private readonly state: string) {
-    this.cups = this.state.trim().split(Game.CUP_SPLITTER).map(cupState => Cup.createCup(cupState));
+  constructor(private readonly initialState: string) {
+    this.cups = this._createCups();
   }
 
   pour(fromCup: number, toCup: number) {
@@ -36,6 +36,10 @@ export class Game {
     }
   }
 
+  restart() {
+    this.cups = this._createCups();
+  }
+
   getGameData() {
     return this.cups.map(cup => cup.items());
   }
@@ -54,5 +58,11 @@ export class Game {
 
   private _checkCups(...cupIndexes: number[]) {
     cupIndexes.forEach(i => this._checkCupIndex(i));
+  }
+
+  private _createCups(): Cup<string>[] {
+    const trim = this.initialState.trim();
+    const split = trim.split(Game.CUP_SPLITTER);
+    return split.map(cupState => Cup.createCup(cupState));
   }
 }
