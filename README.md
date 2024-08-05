@@ -67,14 +67,14 @@ It will show tasks that you can run with Nx.
 [ ] Add Animations when playing the game
 [ ] Create Game Component
 [ ] PotionPuzzle test units
-[ ] Add PotionPuzzle Facade
 [ ] Start Thinking on the Initial Menu
 [ ] Fix issue with component selectors and change defaut of 'lib-'
 [ ] Create an Plays history so it's possible to roleback
-[ ] Add possibility to add more cups
 [ ] Add Sonar
 [ ] Create Rep
 [ ] Add CICD Pipelines
+[X] Add possibility to add more cups
+[X] Add PotionPuzzle Facade
 [X] Add restart level button
 [x] Winning Condition for Cup Game
 [X] Add level mechanic

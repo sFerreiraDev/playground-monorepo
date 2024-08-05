@@ -78,6 +78,10 @@ export class LibPotionPuzzleComponentsComponent {
     this.cups = this.game.restart();
   }
 
+  addEmptyCup() {
+    this.cups = this.game.addCup();
+  }
+
   startGame() {
     this.cups = this.game.startNewGame();
     this.level = this.game.getLevel();

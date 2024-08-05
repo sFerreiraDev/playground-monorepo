@@ -27,6 +27,11 @@ export class PotionPuzzle {
     return this.game.getGameData();
   }
 
+  addCup() {
+    this.game.addCup();
+    return this.game.getGameData();
+  }
+
   getLevel() {
     return this.levelManager.getCurrentLevel();
   }
