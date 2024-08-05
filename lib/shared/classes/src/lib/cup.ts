@@ -7,6 +7,7 @@ import { ArrayUtils } from "@playground-monorepo/lib/shared/utils";
 export class Cup<T extends string = string> {
   public static readonly ITEM_EMPTY = ` `;
   public static readonly ITEM_SPLITTER = `|`;
+  public static readonly CUP_BOTTOM = `]`;
   public static readonly ERROR_NO_SPACE = `No space available`;
   public static readonly ERROR_EMPTY = `Empty cup`;
 
@@ -17,6 +18,11 @@ export class Cup<T extends string = string> {
 
     const notEmptyItems = allItems.filter(v => v !== emptyItem);
     return new Cup(allItems.length, notEmptyItems);
+  }
+
+  public static getCupEmptyState(size: number) {
+    const emptyState = Array.from(new Array(size)).map(_ => Cup.ITEM_EMPTY).join(Cup.ITEM_SPLITTER);
+    return Cup.ITEM_SPLITTER + emptyState + Cup.CUP_BOTTOM;
   }
 
   private readonly stack: Stack<T>;
@@ -73,20 +79,10 @@ export class Cup<T extends string = string> {
     ];
   }
 
-  // private popAux(target: T, acc: T[] = []): T[] {
-  //   if (!this.itemIsEqual(this.stack.peek(), target)) return acc;
-  //   acc.push(this.stack.pop());
-  //   return this.popAux(target, acc);
-  // }
-
   private areAllEqual(): boolean {
     if (this.stack.isEmpty()) return true;
     const first = this.stack.peek()
     return this.stack.items()
       .every(item => item === first);
   }
-
-  // private itemIsEqual(i1: T, i2: T) {
-  //   return i1 === i2;
-  // }
 }

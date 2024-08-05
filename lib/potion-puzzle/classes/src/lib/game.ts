@@ -14,7 +14,7 @@ export class Game {
   private cups: Cup[];
 
   constructor(private readonly initialState: string) {
-    this.cups = this._createCups();
+    this.cups = this._createCups(this.initialState);
   }
 
   pour(fromCup: number, toCup: number) {
@@ -37,7 +37,11 @@ export class Game {
   }
 
   restart() {
-    this.cups = this._createCups();
+    this.cups = this._createCups(this.initialState);
+  }
+
+  addCup() {
+    this.cups.push(this._createCup())
   }
 
   getGameData() {
@@ -60,9 +64,25 @@ export class Game {
     cupIndexes.forEach(i => this._checkCupIndex(i));
   }
 
-  private _createCups(): Cup<string>[] {
-    const trim = this.initialState.trim();
-    const split = trim.split(Game.CUP_SPLITTER);
-    return split.map(cupState => Cup.createCup(cupState));
+  private _createCups(state: string): Cup<string>[] {
+    const split = this._getCupsStates(state);
+    return split.map(cupState => this._createCup(cupState));
+  }
+
+  private _getCupsStates(state: string): string[] {
+    const trim = state.trim();
+    return trim.split(Game.CUP_SPLITTER);
+  }
+
+  // Here we assume that all cups have the same size
+  private _getCupsSize() {
+    return this.cups[0].capacity;
+  }
+
+  private _createCup(state?: string): Cup<string> {
+    if (!state) {
+      state = Cup.getCupEmptyState(this._getCupsSize());
+    }
+    return Cup.createCup(state);
   }
 }
