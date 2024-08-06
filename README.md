@@ -73,6 +73,9 @@ It will show tasks that you can run with Nx.
 [ ] Add Sonar
 [ ] Create Rep
 [ ] Add CICD Pipelines
+[ ] Add commit checks
+[ ] Setup Prettier
+[ ] Setup Litting
 [X] Add possibility to add more cups
 [X] Add PotionPuzzle Facade
 [X] Add restart level button
