@@ -15,8 +15,7 @@ export class PotionPuzzle {
   }
 
   pour(fromCup: number, toCup: number) {
-    if (!this.game || this.game.isWin())
-      throw PotionPuzzle.ERROR_NO_GAME_IN_PROGRESS;
+    if (!this.game || this.game.isWin()) throw PotionPuzzle.ERROR_NO_GAME_IN_PROGRESS;
 
     this.game.pour(fromCup, toCup);
     return this.game.getGameData();

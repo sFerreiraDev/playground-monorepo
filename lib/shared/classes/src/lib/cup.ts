@@ -1,5 +1,5 @@
-import { Stack } from "./stack";
-import { ArrayUtils } from "@playground-monorepo/lib/shared/utils";
+import { Stack } from './stack';
+import { ArrayUtils } from '@playground-monorepo/lib/shared/utils';
 
 /**
  * state - EX: `|1|2|3]`
@@ -12,23 +12,23 @@ export class Cup<T extends string = string> {
   public static readonly ERROR_EMPTY = `Empty cup`;
 
   public static createCup(state: string, emptyItem = Cup.ITEM_EMPTY, splitter = Cup.ITEM_SPLITTER) {
-    const allItems = state
-      .substring(1, state.length - 1)
-      .split(splitter);
+    const allItems = state.substring(1, state.length - 1).split(splitter);
 
-    const notEmptyItems = allItems.filter(v => v !== emptyItem);
+    const notEmptyItems = allItems.filter((v) => v !== emptyItem);
     return new Cup(allItems.length, notEmptyItems);
   }
 
   public static getCupEmptyState(size: number) {
-    const emptyState = Array.from(new Array(size)).map(_ => Cup.ITEM_EMPTY).join(Cup.ITEM_SPLITTER);
+    const emptyState = Array.from(new Array(size))
+      .map((_) => Cup.ITEM_EMPTY)
+      .join(Cup.ITEM_SPLITTER);
     return Cup.ITEM_SPLITTER + emptyState + Cup.CUP_BOTTOM;
   }
 
   private readonly stack: Stack<T>;
 
   constructor(public readonly capacity: number, contents?: T[]) {
-    if (contents && contents.length > capacity) throw Cup.ERROR_NO_SPACE
+    if (contents && contents.length > capacity) throw Cup.ERROR_NO_SPACE;
     this.stack = new Stack(contents ?? []);
   }
 
@@ -38,12 +38,12 @@ export class Cup<T extends string = string> {
   }
 
   peek(): T {
-    if (this.isEmpty()) throw Cup.ERROR_EMPTY
+    if (this.isEmpty()) throw Cup.ERROR_EMPTY;
     return this.stack.peek();
   }
 
   pop(): T {
-    if (this.isEmpty()) throw Cup.ERROR_EMPTY
+    if (this.isEmpty()) throw Cup.ERROR_EMPTY;
     return this.stack.pop();
   }
 
@@ -73,16 +73,12 @@ export class Cup<T extends string = string> {
 
   private itemsWithEmpty() {
     const emptySpaces = this.howManyEmptySpaces();
-    return [
-      ...ArrayUtils.arrayOf(emptySpaces, Cup.ITEM_EMPTY),
-      ...this.stack.items().map(i => i.toString())
-    ];
+    return [...ArrayUtils.arrayOf(emptySpaces, Cup.ITEM_EMPTY), ...this.stack.items().map((i) => i.toString())];
   }
 
   private areAllEqual(): boolean {
     if (this.stack.isEmpty()) return true;
-    const first = this.stack.peek()
-    return this.stack.items()
-      .every(item => item === first);
+    const first = this.stack.peek();
+    return this.stack.items().every((item) => item === first);
   }
 }

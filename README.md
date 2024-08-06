@@ -76,6 +76,8 @@ It will show tasks that you can run with Nx.
 [ ] Add commit checks
 [ ] Setup Prettier
 [ ] Setup Litting
+[ ] Add unit tests for Level Manager
+[ ] Add unit tests for PotionPuzzle
 [X] Add possibility to add more cups
 [X] Add PotionPuzzle Facade
 [X] Add restart level button

@@ -41,19 +41,19 @@ export class Game {
   }
 
   addCup() {
-    this.cups.push(this._createCup())
+    this.cups.push(this._createCup());
   }
 
   getGameData() {
-    return this.cups.map(cup => cup.items());
+    return this.cups.map((cup) => cup.items());
   }
 
   toString() {
-    return this.cups.map(cup => cup.toString()).join(Game.CUP_SPLITTER);
+    return this.cups.map((cup) => cup.toString()).join(Game.CUP_SPLITTER);
   }
-  
+
   isWin() {
-    return this.cups.every(cup => cup.isClosed() || cup.isEmpty());
+    return this.cups.every((cup) => cup.isClosed() || cup.isEmpty());
   }
 
   private _checkCupIndex(index: number) {
@@ -61,12 +61,12 @@ export class Game {
   }
 
   private _checkCups(...cupIndexes: number[]) {
-    cupIndexes.forEach(i => this._checkCupIndex(i));
+    cupIndexes.forEach((i) => this._checkCupIndex(i));
   }
 
   private _createCups(state: string): Cup<string>[] {
     const split = this._getCupsStates(state);
-    return split.map(cupState => this._createCup(cupState));
+    return split.map((cupState) => this._createCup(cupState));
   }
 
   private _getCupsStates(state: string): string[] {

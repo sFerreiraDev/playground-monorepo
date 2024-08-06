@@ -6,8 +6,8 @@ describe('Game', () => {
   const EMPTY = Cup.ITEM_EMPTY;
   let game: Game;
   beforeEach(() => {
-    game = new Game(MOCK_LEVELS_GAME_STATE.level4)
-  })
+    game = new Game(MOCK_LEVELS_GAME_STATE.level4);
+  });
   it('should create', () => {
     expect(game).toBeDefined();
   });
@@ -60,7 +60,7 @@ describe('Game', () => {
 |2|2|2]
 |3|3|3]
 | | | ]`;
-    game = new Game(wonState)
+    game = new Game(wonState);
     expect(game.isWin()).toBe(true);
   });
 
@@ -87,7 +87,7 @@ describe('Game', () => {
       [EMPTY, EMPTY, EMPTY],
       [EMPTY, EMPTY, EMPTY],
     ];
-    
+
     game.addCup();
     expect(game.toString()).toBe(expectedString);
     expect(game.getGameData()).toStrictEqual(expectedData);

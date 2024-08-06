@@ -1,7 +1,9 @@
 {
   "name": "@playground-monorepo/lib/shared/classes",
   "version": "0.0.1",
-  "dependencies": {},
+  "dependencies": {
+    "@playground-monorepo/lib/shared/utils": "0.0.1"
+  },
   "type": "commonjs",
   "main": "./index.cjs",
   "private": true

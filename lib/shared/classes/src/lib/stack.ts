@@ -1,6 +1,6 @@
 export class Stack<T = unknown> {
-  public static readonly ERROR_EMPTY =  `Empty stack`;
-  public static readonly ERROR_OUT_OF_BOUND =  (index: number) => `There's no item for index ${index}`;
+  public static readonly ERROR_EMPTY = `Empty stack`;
+  public static readonly ERROR_OUT_OF_BOUND = (index: number) => `There's no item for index ${index}`;
 
   private readonly stack: Array<T>;
 
@@ -19,7 +19,7 @@ export class Stack<T = unknown> {
   }
 
   pop(): T {
-    if (!this.stack.length) throw Stack.ERROR_EMPTY
+    if (!this.stack.length) throw Stack.ERROR_EMPTY;
     return this.stack.shift() as T;
   }
 
@@ -36,6 +36,6 @@ export class Stack<T = unknown> {
   }
 
   toString(): string {
-    return `|${this.stack.join(',')}]`
+    return `|${this.stack.join(',')}]`;
   }
 }

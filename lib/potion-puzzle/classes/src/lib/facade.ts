@@ -8,7 +8,7 @@ export class Facade {
   private static readonly FACADE = new Facade();
 
   public readonly games = new Map<number, Game>();
-  private readonly gamesStatus = new Map<number, BehaviorSubject<GameStatus>>;
+  private readonly gamesStatus = new Map<number, BehaviorSubject<GameStatus>>();
 
   static get() {
     return Facade.FACADE;
@@ -52,7 +52,7 @@ export class Facade {
   }
 
   toString(gameOrId: number | Game) {
-    return  this._getGame(gameOrId).toString();
+    return this._getGame(gameOrId).toString();
   }
 
   private _getGame(gameOrId: number | Game) {

@@ -1,7 +1,12 @@
 {
   "name": "@playground-monorepo/lib/potion-puzzle/classes",
   "version": "0.0.1",
-  "dependencies": {},
+  "dependencies": {
+    "rxjs": "~7.8.0",
+    "@playground-monorepo/lib/shared/classes": "0.0.1",
+    "@playground-monorepo/lib/shared/types": "0.0.1",
+    "@playground-monorepo/lib/shared/utils": "0.0.1"
+  },
   "type": "commonjs",
   "main": "./index.cjs",
   "private": true

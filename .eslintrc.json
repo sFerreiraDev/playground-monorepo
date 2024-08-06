@@ -18,6 +18,12 @@
               }
             ]
           }
+        ],
+        "@nx/dependency-checks": [
+          "error",
+          {
+            "useLocalPathsForWorkspaceDependencies": true
+          }
         ]
       }
     },
@@ -37,6 +43,12 @@
         "jest": true
       },
       "rules": {}
+    },
+    {
+      "files": ["*package.json"],
+      "rules": {
+        "@nx/dependency-checks": ["error", {}]
+      }
     }
   ]
 }
