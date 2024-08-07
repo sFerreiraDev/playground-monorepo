@@ -11,5 +11,5 @@ import { LibPotionPuzzleComponentsComponent } from '@playground-monorepo/lib/pot
   styleUrl: './app.component.less',
 })
 export class AppComponent {
-  title = 'potion-puzzle';
+  title = 'Potion Puzzle';
 }
