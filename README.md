@@ -63,29 +63,31 @@ It will show tasks that you can run with Nx.
 
 ## TODO's:
 
-[ ] Add level generator
-[ ] Add Animations when playing the game
-[ ] PotionPuzzle test units
-[ ] Start Thinking on the Initial Menu
-[ ] Fix issue with component selectors and change defaut of 'lib-'
-[ ] Add SonarQube
-[ ] Add CICD Pipelines
-[ ] Add unit tests for Level Manager
-[ ] Add unit tests for PotionPuzzle
-[ ] Add git flow rules
-[ ] Add Playwright e2e
-[ ] Create some lib / app nx generatores
-[ ] Fix issue of package.json nx lint dependency
-[ ] RouterTestingModule is Deprecated
---> [ ] Create an Plays history so it's possible to roleback
-[X] Create Game Component
-[X] Fix all units (npx nx run-many -t test --parallel=10 --coverage)
-[X] Create Rep
-[X] Add commit checks
-[X] Setup Prettier
-[X] Setup Litting
-[X] Add possibility to add more cups
-[X] Add PotionPuzzle Facade
-[X] Add restart level button
-[x] Winning Condition for Cup Game
-[X] Add level mechanic
+- [ ] Add level generator
+- [ ] Add Animations when playing the game
+- [ ] PotionPuzzle test units
+- [ ] Start Thinking on the Initial Menu
+- [ ] Fix issue with component selectors and change defaut of 'lib-'
+- [ ] Add SonarQube
+- [ ] Add CICD Pipelines
+- [ ] Add unit tests for Level Manager
+- [ ] Add unit tests for PotionPuzzle
+- [ ] Add git flow rules
+- [ ] Add Playwright e2e
+- [ ] Create some lib / app nx generatores
+- [ ] Fix issue of package.json nx lint dependency
+- [ ] RouterTestingModule is Deprecated
+- [ ] clean up Read me
+- [ ] create a board with tasks
+- --> [ ] Create an Plays history so it's possible to roleback
+- [x] Create Game Component
+- [x] Fix all units (npx nx run-many -t test --parallel=10 --coverage)
+- [x] Create Rep
+- [x] Add commit checks
+- [x] Setup Prettier
+- [x] Setup Litting
+- [x] Add possibility to add more cups
+- [x] Add PotionPuzzle Facade
+- [x] Add restart level button
+- [x] Winning Condition for Cup Game
+- [x] Add level mechanic
