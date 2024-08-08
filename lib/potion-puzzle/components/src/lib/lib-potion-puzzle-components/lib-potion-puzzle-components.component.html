@@ -1,15 +1,11 @@
 Level {{ level }}
 @if (isWin$ | async) {
-    <div>Congratz! You WON!!! <button (click)="nextLevel()">Next Level</button></div>
+<div>Congratz! You WON!!! <button (click)="nextLevel()">Next Level</button></div>
 }
-<div style="display: flex;">
-    @for (cup of cups; let idCup = $index; track idCup) {
-        <lib-cup [cupContents]="cup" [selected]="idCup === selected" [closed]="false" (click)="clickHandler(idCup)"></lib-cup>
-    }
-</div>
-<div style="display: inline-flex; flex-direction: column;">
-    <textarea name="state" id="state" [(ngModel)]="state" style="margin-top: 20px; width: 150px; height: 120px;" disabled></textarea>
-    <button>Start</button>
+<div style="display: flex">
+  @for (cup of cups; let idCup = $index; track idCup) {
+  <lib-cup [cupContents]="cup" [selected]="idCup === selected" [closed]="false" (click)="clickHandler(idCup)"></lib-cup>
+  }
 </div>
 <button (click)="restartLevel()">Restart</button>
 <button (click)="addEmptyCup()">Add Cup</button>

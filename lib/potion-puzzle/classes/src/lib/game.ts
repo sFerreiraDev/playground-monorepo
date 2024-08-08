@@ -80,9 +80,7 @@ export class Game {
   }
 
   private _createCup(state?: string): Cup<string> {
-    if (!state) {
-      state = Cup.getCupEmptyState(this._getCupsSize());
-    }
-    return Cup.createCup(state);
+    const stateOrCapacity = state ? state : this._getCupsSize();
+    return Cup.createCup(stateOrCapacity);
   }
 }

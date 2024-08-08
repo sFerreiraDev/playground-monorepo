@@ -3,12 +3,9 @@ import { ChangeDetectorRef, Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 
-import { BehaviorSubject } from 'rxjs';
+import { ReplaySubject } from 'rxjs';
 
-import {
-  PotionPuzzle,
-  MOCK_LEVELS_GAME_STATE,
-} from '@playground-monorepo/lib/potion-puzzle/classes';
+import { PotionPuzzle } from '@playground-monorepo/lib/potion-puzzle/classes';
 import { CupComponent } from '@playground-monorepo/lib/shared/cup';
 
 @Component({
@@ -23,8 +20,7 @@ export class LibPotionPuzzleComponentsComponent {
   cups: Array<string[]> = [];
   selected?: number;
 
-  isWin$ = new BehaviorSubject<boolean>(false);
-  state!: string;
+  isWin$ = new ReplaySubject<boolean>(1);
   level!: number;
 
   constructor(private cdr: ChangeDetectorRef) {
@@ -32,7 +28,7 @@ export class LibPotionPuzzleComponentsComponent {
   }
 
   clickHandler(cupIndex: number) {
-    if (!this.isAnyCupSelected()) {
+    if (!this.isCupSelected()) {
       this.selectCup(cupIndex);
       return;
     }
@@ -40,10 +36,9 @@ export class LibPotionPuzzleComponentsComponent {
       this.deselectCup();
       return;
     }
-    // should never happen but typescript :/
-    if (this.selected == null) return;
     try {
-      this.cups = this.game.pour(this.selected, cupIndex);
+      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+      this.cups = this.game.pour(this.selected!, cupIndex);
       this.deselectCup();
     } catch (error) {
       this.selectCup(cupIndex);
@@ -54,11 +49,13 @@ export class LibPotionPuzzleComponentsComponent {
   }
 
   nextLevel() {
-    this.game.passLevel();
-    this.startGame();
+    if (this.game.isWin()) {
+      this.game.passLevel();
+      this.startGame();
+    }
   }
 
-  isAnyCupSelected() {
+  isCupSelected() {
     return this.selected != null;
   }
 
@@ -86,6 +83,5 @@ export class LibPotionPuzzleComponentsComponent {
     this.cups = this.game.startNewGame();
     this.level = this.game.getLevel();
     this.isWin$.next(false);
-    this.state = MOCK_LEVELS_GAME_STATE[`level${this.game.getLevel() as 1 | 2 | 3 | 4}`]
   }
 }

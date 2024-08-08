@@ -65,19 +65,25 @@ It will show tasks that you can run with Nx.
 
 [ ] Add level generator
 [ ] Add Animations when playing the game
-[ ] Create Game Component
 [ ] PotionPuzzle test units
 [ ] Start Thinking on the Initial Menu
 [ ] Fix issue with component selectors and change defaut of 'lib-'
-[ ] Create an Plays history so it's possible to roleback
-[ ] Add Sonar
-[ ] Create Rep
+[ ] Add SonarQube
 [ ] Add CICD Pipelines
-[ ] Add commit checks
-[ ] Setup Prettier
-[ ] Setup Litting
 [ ] Add unit tests for Level Manager
 [ ] Add unit tests for PotionPuzzle
+[ ] Add git flow rules
+[ ] Add Playwright e2e
+[ ] Create some lib / app nx generatores
+[ ] Fix issue of package.json nx lint dependency
+[ ] RouterTestingModule is Deprecated
+--> [ ] Create an Plays history so it's possible to roleback
+[X] Create Game Component
+[X] Fix all units (npx nx run-many -t test --parallel=10 --coverage)
+[X] Create Rep
+[X] Add commit checks
+[X] Setup Prettier
+[X] Setup Litting
 [X] Add possibility to add more cups
 [X] Add PotionPuzzle Facade
 [X] Add restart level button

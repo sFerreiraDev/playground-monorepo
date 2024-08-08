@@ -2,9 +2,11 @@ import { Cup } from './cup';
 
 describe('Cup', () => {
   it('should creat empty cup', () => {
-    const empty = new Cup(3);
+    const empty = Cup.createCup(3);
     expect(empty.isEmpty()).toBe(true);
     expect(empty.toString()).toStrictEqual(`| | | ]`);
+    expect(empty.items()).toStrictEqual([Cup.ITEM_EMPTY, Cup.ITEM_EMPTY, Cup.ITEM_EMPTY]);
+    expect(empty['areAllEqual']()).toBe(true);
   });
   it('should throw error if pop on empty cup', () => {
     const empty = new Cup(3);
@@ -19,7 +21,7 @@ describe('Cup', () => {
   });
   it('should create cup with contents', () => {
     const expected = `| |1|2]`;
-    const cup = new Cup(3, ['1', '2']);
+    const cup = Cup.createCup(`|1|2| ]`);
     expect(cup.isFull()).toBe(false);
     expect(cup.isClosed()).toBe(false);
     expect(cup.isEmpty()).toBe(false);
@@ -30,6 +32,7 @@ describe('Cup', () => {
     const expected = `| |2|3]`;
     const cup = new Cup(3, ['1', '2', '3']);
     expect(cup.pop()).toBe('1');
+    expect(cup.items()).toStrictEqual([Cup.ITEM_EMPTY, '2', '3']);
     expect(cup.capacity).toBe(3);
     expect(cup.toString()).toBe(expected);
   });
@@ -38,6 +41,7 @@ describe('Cup', () => {
     const cup = new Cup(4, ['1', '1', '1']);
     cup.push('1');
     expect(cup.isFull()).toBeTruthy();
+    expect(() => cup.push('1')).toThrow(Cup.ERROR_NO_SPACE);
     expect(cup.isClosed()).toBeTruthy();
     expect(cup.toString()).toBe(expected);
   });

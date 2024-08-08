@@ -11,7 +11,8 @@ export class Cup<T extends string = string> {
   public static readonly ERROR_NO_SPACE = `No space available`;
   public static readonly ERROR_EMPTY = `Empty cup`;
 
-  public static createCup(state: string, emptyItem = Cup.ITEM_EMPTY, splitter = Cup.ITEM_SPLITTER) {
+  public static createCup(state: string | number, emptyItem = Cup.ITEM_EMPTY, splitter = Cup.ITEM_SPLITTER) {
+    state = typeof state === 'string' ? state : Cup.getCupEmptyState(state);
     const allItems = state.substring(1, state.length - 1).split(splitter);
 
     const notEmptyItems = allItems.filter((v) => v !== emptyItem);
