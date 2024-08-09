@@ -74,12 +74,12 @@ export class Cup<T extends string = string> {
 
   private itemsWithEmpty() {
     const emptySpaces = this.howManyEmptySpaces();
-    return [...ArrayUtils.arrayOf(emptySpaces, Cup.ITEM_EMPTY), ...this.stack.items().map((i) => i.toString())];
+    return [...ArrayUtils.arrayOf(emptySpaces, Cup.ITEM_EMPTY), ...this.stack.get().map((i) => i.toString())];
   }
 
   private areAllEqual(): boolean {
     if (this.stack.isEmpty()) return true;
     const first = this.stack.peek();
-    return this.stack.items().every((item) => item === first);
+    return this.stack.get().every((item) => item === first);
   }
 }

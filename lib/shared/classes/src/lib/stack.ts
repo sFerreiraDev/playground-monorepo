@@ -1,8 +1,8 @@
 export class Stack<T = unknown> {
-  public static readonly ERROR_EMPTY = `Empty stack`;
+  public static readonly ERROR_EMPTY: string = `Empty stack`;
   public static readonly ERROR_OUT_OF_BOUND = (index: number) => `There's no item for index ${index}`;
 
-  private readonly stack: Array<T>;
+  protected readonly stack: Array<T>;
 
   constructor(contents?: Array<T>) {
     this.stack = contents ? [...contents] : [];
@@ -31,7 +31,7 @@ export class Stack<T = unknown> {
     return !this.stack.length;
   }
 
-  items(): T[] {
+  get(): T[] {
     return [...this.stack];
   }
 

@@ -20,7 +20,7 @@ describe(`Stack`, () => {
     const expected = `|1,2,3]`;
     const items = [1, 2, 3];
     const stack = new Stack(items);
-    const returnedItems = stack.items();
+    const returnedItems = stack.get();
     expect(stack.isEmpty()).toBe(false);
     expect(stack.size()).toBe(3);
     expect(stack.toString()).toBe(expected);
