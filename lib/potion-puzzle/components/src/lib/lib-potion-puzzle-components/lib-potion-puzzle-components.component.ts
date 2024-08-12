@@ -22,6 +22,7 @@ export class LibPotionPuzzleComponentsComponent {
 
   isWin$ = new ReplaySubject<boolean>(1);
   level!: number;
+  moves!: string;
 
   constructor(private cdr: ChangeDetectorRef) {
     this.startGame();
@@ -39,6 +40,7 @@ export class LibPotionPuzzleComponentsComponent {
     try {
       // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
       this.cups = this.game.pour(this.selected!, cupIndex);
+      this.moves = this.game.getHistory();
       this.deselectCup();
     } catch (error) {
       this.selectCup(cupIndex);
@@ -72,16 +74,29 @@ export class LibPotionPuzzleComponentsComponent {
   }
 
   restartLevel() {
-    this.cups = this.game.restart();
+    this.game.restart();
+    this._updateView();
   }
 
   addEmptyCup() {
     this.cups = this.game.addCup();
+    this._updateView();
+  }
+
+  roleBack() {
+    this.game.roleBack();
+    this._updateView();
   }
 
   startGame() {
-    this.cups = this.game.startNewGame();
+    this.game.startNewGame();
+    this._updateView();
+  }
+
+  private _updateView() {
+    this.cups = this.game.getGameData();
     this.level = this.game.getLevel();
+    this.moves = this.game.getHistory();
     this.isWin$.next(false);
   }
 }

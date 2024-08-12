@@ -15,4 +15,8 @@ export class History<T = unknown> extends Stack<T> {
   override toString(): string {
     return `${[...this.stack].reverse().join(' | ')}`;
   }
+
+  clear() {
+    this.stack.length = 0;
+  }
 }
