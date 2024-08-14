@@ -31,7 +31,7 @@ export class Game {
 
     to.push(from.pop());
     // push while all other items are the same
-    if (!from.isEmpty() && !to.isFull() && from.peek() === item) {
+    if (!isForce && !from.isEmpty() && !to.isFull() && from.peek() === item) {
       this.pour(fromCup, toCup);
     }
   }
@@ -44,8 +44,12 @@ export class Game {
     this.cups.push(this._createCup());
   }
 
+  getCupAmountItems(cupIndex: number) {
+    return this.cups[cupIndex].amountItems();
+  }
+
   getGameData() {
-    return this.cups.map((cup) => cup.items());
+    return this.cups.map((cup) => cup.itemsWithEmpty());
   }
 
   toString() {

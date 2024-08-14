@@ -26,8 +26,16 @@ export class PotionPuzzle {
   pour(fromCup: number, toCup: number) {
     if (!this.game || this.game.isWin()) throw PotionPuzzle.ERROR_NO_GAME_IN_PROGRESS;
 
+    const fromCupAmount = this.game.getCupAmountItems(fromCup);
+
     this.game.pour(fromCup, toCup);
-    this._addMoveEntry(fromCup, toCup);
+
+    const newFromCupAmount = this.game.getCupAmountItems(fromCup);
+    const amountOfMoves = fromCupAmount - newFromCupAmount;
+
+    for (let moveIndex = 0; moveIndex < amountOfMoves; moveIndex++) {
+      this._addMoveEntry(fromCup, toCup);
+    }
 
     return this.getGameData();
   }
@@ -38,6 +46,7 @@ export class PotionPuzzle {
 
   restart() {
     this.game.restart();
+    this.history.clear();
     return this.game.getGameData();
   }
 
@@ -46,15 +55,16 @@ export class PotionPuzzle {
     return this.game.getGameData();
   }
 
-  roleBack() {
+  roleBack(): string[][] {
     const lastMove = this.history.peek();
     const [toCup, fromCup] = PotionPuzzle.getCupsFromMove(lastMove);
 
-    // this is not suficient information to roleback the play, because it's not posible to
-    // know what was the ammount of items that were pouered in the last play.
-    // I need to add the state as info on the history entry.
     this.game.pour(fromCup, toCup, true);
     this.history.pop();
+
+    if (this.history.size() && this.history.peek() === lastMove) {
+      return this.roleBack();
+    }
 
     return this.getGameData();
   }

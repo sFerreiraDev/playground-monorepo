@@ -60,21 +60,29 @@ export class Cup<T extends string = string> {
     return this.stack.size() === this.capacity && this.areAllEqual();
   }
 
-  howManyEmptySpaces() {
+  amountEmptySpaces() {
     return this.capacity - this.stack.size();
   }
 
+  amountItems() {
+    return this.stack.size();
+  }
+
   items() {
-    return this.itemsWithEmpty();
+    return [...this.stack.get().map((i) => i.toString())];
+  }
+
+  itemsWithEmpty() {
+    return this._itemsWithEmpty();
   }
 
   toString(): string {
-    return `|${this.itemsWithEmpty().join(Cup.ITEM_SPLITTER)}]`;
+    return `|${this._itemsWithEmpty().join(Cup.ITEM_SPLITTER)}]`;
   }
 
-  private itemsWithEmpty() {
-    const emptySpaces = this.howManyEmptySpaces();
-    return [...ArrayUtils.arrayOf(emptySpaces, Cup.ITEM_EMPTY), ...this.stack.get().map((i) => i.toString())];
+  private _itemsWithEmpty() {
+    const emptySpaces = this.amountEmptySpaces();
+    return [...ArrayUtils.arrayOf(emptySpaces, Cup.ITEM_EMPTY), ...this.items()];
   }
 
   private areAllEqual(): boolean {
